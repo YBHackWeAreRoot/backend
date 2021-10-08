@@ -17,5 +17,6 @@ namespace MrParker.Logic.ParkingSpaces
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+
     }
 }
