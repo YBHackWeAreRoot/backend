@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MrParker.DataAccess.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Models
 {
-    public class ParkSpaceAvailability
+    public class ParkSpaceAvailability : IModel
     {
 
         public Guid Id { get; set; }
 
-        public int ParkSpaceId { get; set; }
+        public Guid ParkSpaceId { get; set; }
 
         public byte? WeekDay { get; set; }
 

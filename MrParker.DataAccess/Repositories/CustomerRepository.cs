@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MrParker.DataAccess.Helpers;
 using MrParker.DataAccess.Interfaces;
 using MrParker.DataAccess.Models;
 using System;
@@ -9,28 +10,8 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Repositories
 {
-    public class CustomerRepository : IRepository<Customer>
+    public class CustomerRepository : BaseRepository<Customer>
     {
-        public bool Delete(Customer record)
-        {
-            return false;
-        }
 
-        public bool Insert(Customer record)
-        {
-            return false;
-        }
-
-        public IEnumerable<Customer> Select(string condition = null, object parameters = null)
-        {
-            using var db = SqlConnectionProvider.CreateConnection();
-
-            return db.Query<Customer>($"SELECT * FROM Customer{(condition != null ? $" WHERE {condition}" : "")};", parameters);
-        }
-
-        public int Update(Customer record, string[] cols = null)
-        {
-            return 0;
-        }
     }
 }

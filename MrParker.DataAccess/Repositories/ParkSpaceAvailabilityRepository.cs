@@ -8,26 +8,8 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Repositories
 {
-    public class ParkSpaceAvailabilityRepository : IRepository<ParkSpaceAvailability>
+    public class ParkSpaceAvailabilityRepository : BaseRepository<ParkSpaceAvailability>
     {
-        public bool Delete(ParkSpaceAvailability record)
-        {
-            throw new NotImplementedException();
-        }
 
-        public bool Insert(ParkSpaceAvailability record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<ParkSpaceAvailability> Select(string condition = null, object parameters = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update(ParkSpaceAvailability record, string[] cols = null)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -8,14 +8,14 @@ namespace MrParker.DataAccess.Interfaces
 {
     interface IRepository<T>
     {
+        
+        public Task<IEnumerable<T>> SelectAsync(string condition = null, object parameters = null);
 
-        public IEnumerable<T> Select(string condition = null, object parameters = null);
+        public Task<bool> InsertAsync(T record);
 
-        public bool Insert(T record);
+        public Task<bool> UpdateAsync(T record, object parameters);
 
-        public int Update(T record, string[] cols = null);
-
-        public bool Delete(T record);
+        public Task<bool> DeleteAsync(T record);
 
     }
 }

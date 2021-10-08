@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dapper;
+using MrParker.DataAccess.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Models
 {
-    public class ParkSpace
+    public class ParkSpace : IModel
     {
 
         public Guid Id { get; set; }
@@ -17,7 +19,7 @@ namespace MrParker.DataAccess.Models
 
         public decimal Latitude { get; set; }
 
-        public int ProviderId { get; set; }
+        public Guid ProviderId { get; set; }
 
         public string Street { get; set; }
 
@@ -29,7 +31,7 @@ namespace MrParker.DataAccess.Models
 
         public string Country { get; set; }
 
-        public int TotalCapacity { get; set; }
+        public int TotalParkingSlots { get; set; }
 
         public string Description { get; set; }
 

@@ -8,26 +8,8 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Repositories
 {
-    public class ProviderRepository : IRepository<Provider>
+    public class ProviderRepository : BaseRepository<Provider>
     {
-        public bool Delete(Provider record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Insert(Provider record)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Provider> Select(string condition = null, object parameters = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Update(Provider record, string[] cols = null)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

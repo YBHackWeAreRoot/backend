@@ -63,6 +63,55 @@ namespace MrParker
                 endpoints.MapControllers();
                 endpoints.MapHub<ClientsHub>("/hub");
             });
+
+
+            //var providerRepo = new DataAccess.Repositories.ProviderRepository();
+            //var insertResult = Task.Run(async () => await providerRepo.InsertAsync(new DataAccess.Models.Provider()
+            //{
+            //    Name = "Wankdorf Stadion",
+            //    ProviderType = 0,
+            //    ContactEmail = "info@wankdorfstadion.test",
+            //    ContactPhone = "031 123 45 67"
+            //})).Result;
+
+            //var provider = Task.Run(async () => await providerRepo.SelectAsync()).Result.FirstOrDefault();
+
+
+            //var parkSpaceRepo = new DataAccess.Repositories.ParkSpaceRepository();
+            //var insertResult = Task.Run(async () => await parkSpaceRepo.InsertAsync(new DataAccess.Models.ParkSpace()
+            //{
+            //    //Id = Guid.NewGuid(),
+            //    Name = "parking place",
+            //    ProviderId = provider.Id,
+            //    Longitude = 46.9634175M,
+            //    Latitude = 7.4604527M,
+            //    Street = "Papiermühlestrasse 91",
+            //    Zip = "3014",
+            //    City = "Bern",
+            //    Country = "Schweiz",
+            //    TotalParkingSlots = 50,
+            //    Description = "Neben dem Wankdorf Stadion",
+            //    CustomerInfo = "Parkuhr",
+            //    RatePerMinute = 0.05M,
+            //    Currency = "CHE"
+            //})).Result;
+
+            //var parkSpace = Task.Run(async () => await parkSpaceRepo.SelectAsync("ProviderId = @ProviderId", new { ProviderId = provider.Id })).Result.FirstOrDefault();
+
+            //var updateResult = Task.Run(async () => await parkSpaceRepo.UpdateAsync(parkSpace, new { Id = parkSpace.Id, Currency = "CHF" })).Result;
+
+            //var customerRepo = new DataAccess.Repositories.CustomerRepository();
+            //bool insertPaker = Task.Run(async () => await customerRepo.InsertAsync(new DataAccess.Models.Customer() {
+            //    FirstName = "Peter",
+            //    LastName = "Parker",
+            //    Street = "Parkerstreet 2021",
+            //    Zip = "12345",
+            //    City = "ParkerCity",
+            //    Country = "Parkerland"
+            //})).Result;
+
+            //var parker = Task.Run(async () => await customerRepo.SelectAsync("Country = @Country", new { Country = "Parkerland" })).Result.FirstOrDefault();
+            //var delResult = Task.Run(async () => await customerRepo.DeleteAsync(parker)).Result;
         }
     }
 }
