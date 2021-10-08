@@ -28,11 +28,11 @@ namespace MrParker.Logic.ParkingSpaces
             // TODO Match from/to with Slots and Bookings
 
             // TODO REFACTOR (Presentation Workaround)
-            IEnumerable<ParkingSpace> parkingSpaces = ;
+            var parkingSpaces = await GetParkingSpacesAsync(positionLat, positionLong) ?? Enumerable.Empty<ParkingSpace>();
 
             // Get Provider-Data
             var providers = (await new Providers.ProvidersService(_logger)
-                .GetProviders(parkingSpaces.Select(s => s.Id)))
+                .GetProviders(parkingSpaces.Select(s => s.ProviderId)))
                 .ToDictionary(p => p.Id);
 
             return parkingSpaces.Select(s => new ParkingSpaceSearchResult
@@ -41,9 +41,10 @@ namespace MrParker.Logic.ParkingSpaces
                 Availability = new EffectiveAvailability
                 {
                     FromTime = fromTime.AddHours(-1),
-                    ToTime = toTime.AddHours(6)
+                    ToTime = toTime.AddHours(6),
+                    TotalParkingSlots = s.TotalParkingSlots, // TODO Sum of valid Slots
                 },
-                Provider = providers.TryGetValue(s.ProviderId, out Provider provider) ? provider : null
+                Provider = providers.TryGetValue(s.ProviderId, out Provider provider) ? provider : null,
             });
         }
         

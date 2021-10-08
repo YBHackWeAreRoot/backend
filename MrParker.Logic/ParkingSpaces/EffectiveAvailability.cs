@@ -10,6 +10,6 @@ namespace MrParker.Logic.ParkingSpaces
     {
         public DateTime FromTime { get; set; }
         public DateTime ToTime { get; set; }
-        public int Capacity { get; set; }
+        public int TotalParkingSlots { get; set; }
     }
 }

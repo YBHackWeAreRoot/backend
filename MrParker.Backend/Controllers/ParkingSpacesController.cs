@@ -58,8 +58,8 @@ namespace MrParker.Controllers
                     ToTime = s.Availability.ToTime,
                     PositionLat = s.ParkingSpace.Latitude,
                     PositionLong = s.ParkingSpace.Longitude,
-                    RatePerMinute = s.Price,
-                    Capacity = s.Availability.Capacity,
+                    RatePerMinute = s.ParkingSpace.RatePerMinute,
+                    Capacity = s.Availability.TotalParkingSlots,
                     Description = s.ParkingSpace.Description
                 });
 

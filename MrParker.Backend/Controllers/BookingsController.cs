@@ -177,25 +177,25 @@ namespace MrParker.Controllers
         
         [HttpPost]
         [Route("api/[controller]/cancel")]
-        public async Task Cancel([FromBody] string bookingId)
+        public async Task Cancel([FromBody] BookingIdentification id)
         {
-            if (!await service.Cancel(bookingId))
+            if (!await service.Cancel(id.BookingId))
                 Response.StatusCode = 400; // Invalid request
         }
         
         [HttpPost]
         [Route("api/[controller]/checkin")]
-        public async Task CheckIn([FromBody] string bookingId)
+        public async Task CheckIn([FromBody] BookingIdentification id)
         {
-            if (!await service.CheckIn(bookingId))
+            if (!await service.CheckIn(id.BookingId))
                 Response.StatusCode = 400; // Invalid request
         }
         
         [HttpPost]
         [Route("api/[controller]/checkout")]
-        public async Task CheckOut([FromBody] string bookingId)
+        public async Task CheckOut([FromBody] BookingIdentification id)
         {
-            if (!await service.CheckOut(bookingId))
+            if (!await service.CheckOut(id.BookingId))
                 Response.StatusCode = 400; // Invalid request
         }
     }

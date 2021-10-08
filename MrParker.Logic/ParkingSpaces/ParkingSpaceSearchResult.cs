@@ -12,6 +12,5 @@ namespace MrParker.Logic.ParkingSpaces
         public ParkingSpace ParkingSpace { get; set; }
         public Provider Provider { get; set; }
         public EffectiveAvailability Availability { get; set; }
-        public decimal Price { get; set; }
     }
 }
