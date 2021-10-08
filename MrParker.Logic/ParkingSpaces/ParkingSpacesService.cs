@@ -21,11 +21,30 @@ namespace MrParker.Logic.ParkingSpaces
 
         public async Task<IEnumerable<ParkingSpaceSearchResult>> SearchAvailability(decimal positionLat, decimal positionLong, DateTime fromTime, DateTime toTime)
         {
-            ParkingSpaceAvailabilityRepository repo = new();
+            // TODO Closest Spaces
 
-            // TODO
+            // TODO Get Availabilities
 
-            return null;
+            // TODO Match from/to with Slots and Bookings
+
+            // TODO REFACTOR (Presentation Workaround)
+            IEnumerable<ParkingSpace> parkingSpaces = ;
+
+            // Get Provider-Data
+            var providers = (await new Providers.ProvidersService(_logger)
+                .GetProviders(parkingSpaces.Select(s => s.Id)))
+                .ToDictionary(p => p.Id);
+
+            return parkingSpaces.Select(s => new ParkingSpaceSearchResult
+            {
+                ParkingSpace = s,
+                Availability = new EffectiveAvailability
+                {
+                    FromTime = fromTime.AddHours(-1),
+                    ToTime = toTime.AddHours(6)
+                },
+                Provider = providers.TryGetValue(s.ProviderId, out Provider provider) ? provider : null
+            });
         }
 
         public async Task<IEnumerable<ParkingSpaceAvailability>> GetAvailabilitiesAsync(IEnumerable<Guid> parkSpaceIds, DateTime fromTime, DateTime toTime)

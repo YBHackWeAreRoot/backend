@@ -77,6 +77,29 @@ namespace MrParker.Logic.Bookings
 
             return true;
         }
+        
+        public async Task<bool> CancelBySystem(string id)
+        {
+            _ = id ?? throw new ArgumentNullException(nameof(id));
+
+            try
+            {
+                await repository.UpdateAsync(
+                    new DataAccess.Models.Booking
+                    {
+                        Id = Guid.Parse(id),
+                        Status = (int)BookingStatus.CanceledBySystem
+                    },
+                    new[] { "Status" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Set Booking cancelled by System");
+                return false;
+            }
+
+            return true;
+        }
 
         public async Task<bool> CheckIn(string id)
         {
