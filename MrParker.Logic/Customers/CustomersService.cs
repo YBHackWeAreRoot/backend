@@ -10,13 +10,6 @@ namespace MrParker.Logic.Customers
 {
     public class CustomersService
     {
-        // TODO REFACTOR: Use real customers instead of Mock-Data
-        private readonly DataAccess.Models.Customer mockedCustomer = new()
-        {
-            Id = Guid.Parse("0ade866e-eefa-43bd-bc1c-fc8e3932c4ae"),
-            FirstName = "Hans",
-            LastName = "Muster",
-        };
 
         private ILogger _logger;
 
@@ -26,20 +19,19 @@ namespace MrParker.Logic.Customers
         }
 
         // TODO REFACTOR: Get Customer based on authentication
-        public Task<Customer> GetCurrentCustomer()
+        public async Task<Customer> GetCurrentCustomer()
         {
             var repo = new DataAccess.Repositories.CustomerRepository();
 
             try
             {
-                return Task.FromResult(repo.SelectAsync($"FirstName = @FirsName AND LastName = @LastName",
-                                       new { FirstName = "Peter", LastName = "Parker" }).Result.FirstOrDefault());
+                return (await repo.SelectAsync($"FirstName = @FirsName AND LastName = @LastName",
+                                       new { FirstName = "Peter", LastName = "Parker" })).FirstOrDefault();
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
             }
-
             return null;
         }
     }

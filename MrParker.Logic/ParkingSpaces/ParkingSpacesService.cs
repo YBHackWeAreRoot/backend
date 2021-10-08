@@ -7,26 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MrParker.Logic.Providers
+namespace MrParker.Logic.ParkingSpaces
 {
-    public class ProvidersService
+    public class ParkingSpacesService
     {
-        private ILogger _logger;
-        private DataAccess.Repositories.ProviderRepository repository;
 
-        public ProvidersService(ILogger logger)
+        private ILogger _logger;
+
+        public ParkingSpacesService(ILogger logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            repository = new DataAccess.Repositories.ProviderRepository();
         }
 
-        public async Task<IEnumerable<Provider>> GetProviders(IEnumerable<Guid> providerIds)
+        public async Task<IEnumerable<ParkingSpaceAvailability>> GetAvailabilitiesAsync(IEnumerable<Guid> parkSpaceIds, DateTime fromTime, DateTime toTime)
         {
-            ProviderRepository repo = new();
+            ParkingSpaceAvailabilityRepository repo = new();
 
             try
             {
-                return await repo.SelectAsync($"ProviderId IN @ProviderId", new { ProviderId = providerIds.ToArray() });
+                return await repo.SelectAsync();
             }
             catch (Exception ex)
             {
