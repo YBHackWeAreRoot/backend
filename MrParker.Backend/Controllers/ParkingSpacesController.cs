@@ -23,21 +23,28 @@ namespace MrParker.Controllers
         // GET: api/<ParkingSpacesController>
         [HttpGet]
         [Route("api/[controller]/search")]
-        public IEnumerable<ParkingSpaceSearchResult> Search(string position, DateTime from, DateTime to)
+        public IEnumerable<ParkingSpaceDetail> Search(string position, DateTime from, DateTime to)
         {
             // TODO Position Check: 
             // - Comma separated lat,long
             // - max. 6 decimal places
 
             if (from == DateTime.MinValue || to == DateTime.MinValue)
-                return Enumerable.Empty<ParkingSpaceSearchResult>();
+                return Enumerable.Empty<ParkingSpaceDetail>();
 
             return new[] { 
-                new ParkingSpaceSearchResult
+                new ParkingSpaceDetail
                 {
-                    Id = "1",
+                    Id = "39577d63-1336-47bb-94ec-f5885caf0085",
                     Name = "EWB Hauptsitz",
-                    ProviderName = "EWB",
+                    Provider = new ProviderDetail
+                    {
+                        Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
+                        Name = "EWB",
+                        ProviderType = "Company",
+                        ContactEmail = "info@ewb.ch",
+                        ContactPhone = "+41 12 345 67 89"
+                    },
                     Address = "Monbijoustrasse 11, \n3011 Bern",
                     Currency = "CHF",
                     FromTime = from.AddHours(-1),
@@ -47,11 +54,18 @@ namespace MrParker.Controllers
                     RatePerMinute = .01M,
                     Capacity = 45
                 },
-                new ParkingSpaceSearchResult
+                new ParkingSpaceDetail
                 {
-                    Id = "2",
+                    Id = "fa9ad634-0561-46b7-aaa7-7f56719c83b1",
                     Name = "Parkplatz",
-                    ProviderName = "Muster Hans",
+                    Provider = new ProviderDetail
+                    {
+                        Id = "bd978559-54e5-471b-8ded-9c3dcff62d2c",
+                        Name = "Moriz Müller",
+                        ProviderType = "Private",
+                        ContactEmail = "moriz@mueller",
+                        ContactPhone = "+41794561283",
+                    },
                     Address = "Klösterlistutz 20, \n3013 Bern",
                     Currency = "CHF",
                     FromTime = from.AddHours(-4),
@@ -78,7 +92,7 @@ namespace MrParker.Controllers
                 Name = "Some parking slot",
                 Provider = new ProviderDetail
                 {
-                    Id = "11",
+                    Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
                     Name = "EWB",
                     ProviderType = "Company",
                     ContactEmail = "info@ewb.ch",
@@ -95,23 +109,5 @@ namespace MrParker.Controllers
                 Description = "Description ...",
             };
         }
-
-        //// POST api/<ParkingSpacesController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<ParkingSpacesController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<ParkingSpacesController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

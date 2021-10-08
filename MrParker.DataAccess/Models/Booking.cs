@@ -12,13 +12,13 @@ namespace MrParker.DataAccess.Models
 
         public Guid Id { get; set; }
 
-        public int ParkSlotId { get; set; }
+        public Guid ParkSlotId { get; set; }
 
         public DateTime FromTime {get; set;}
 
         public DateTime ToTime { get; set; }
 
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         public int Status { get; set; }
 
