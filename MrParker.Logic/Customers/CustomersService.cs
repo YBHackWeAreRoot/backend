@@ -25,7 +25,7 @@ namespace MrParker.Logic.Customers
 
             try
             {
-                return (await repo.SelectAsync($"FirstName = @FirsName AND LastName = @LastName",
+                return (await repo.SelectAsync($"FirstName = @FirstName AND LastName = @LastName",
                                        new { FirstName = "Peter", LastName = "Parker" })).FirstOrDefault();
             }
             catch (Exception ex)
