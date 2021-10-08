@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace MrParker.Logic.Customers
             FirstName = "Hans",
             LastName = "Muster",
         };
+
+        private ILogger _logger;
+
+        public CustomersService(ILogger logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
 
         // TODO REFACTOR: Get Customer based on authentication
         public Task<DataAccess.Models.Customer> GetCurrentCustomer()

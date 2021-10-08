@@ -169,7 +169,7 @@ namespace MrParker.Controllers
         [Route("api/[controller]/new")]
         public async Task CreateNew([FromBody] BookingRequest request)
         {
-            if (!await new Logic.Bookings.BookingsService()
+            if (!await new Logic.Bookings.BookingsService(_logger)
                 .Create(request.ParkingSpaceId, request.From, request.To))
             {
                 Response.StatusCode = 400; // Invalid request
@@ -180,7 +180,7 @@ namespace MrParker.Controllers
         [Route("api/[controller]/cancel")]
         public async Task Cancel([FromBody] string bookingId)
         {
-            if (!await new Logic.Bookings.BookingsService().Cancel(bookingId))
+            if (!await new Logic.Bookings.BookingsService(_logger).Cancel(bookingId))
             {
                 Response.StatusCode = 400; // Invalid request
             }
@@ -190,7 +190,7 @@ namespace MrParker.Controllers
         [Route("api/[controller]/checkin")]
         public async Task CheckIn([FromBody] string bookingId)
         {
-            if (!await new Logic.Bookings.BookingsService().CheckIn(bookingId))
+            if (!await new Logic.Bookings.BookingsService(_logger).CheckIn(bookingId))
             {
                 Response.StatusCode = 400; // Invalid request
             }
@@ -200,7 +200,7 @@ namespace MrParker.Controllers
         [Route("api/[controller]/checkout")]
         public async Task CheckOut([FromBody] string bookingId)
         {
-            if (!await new Logic.Bookings.BookingsService().CheckOut(bookingId))
+            if (!await new Logic.Bookings.BookingsService(_logger).CheckOut(bookingId))
             {
                 Response.StatusCode = 400; // Invalid request
             }
