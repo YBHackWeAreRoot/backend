@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,13 @@ namespace MrParker.Logic.Bookings
 {
     public class BookingsService
     {
+        private ILogger _logger;
+
+        public BookingsService(ILogger logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         public async Task<bool> Create(string parkingSpaceId, DateTime fromTime, DateTime toTime)
         {
             // TODO Verification of validity of from/to for specified Parking-Space
@@ -15,7 +23,7 @@ namespace MrParker.Logic.Bookings
             // TODO implement
             var booking = new DataAccess.Models.Booking
             {
-                CustomerId = (await new Customers.CustomersService().GetCurrentCustomer()).Id,
+                CustomerId = (await new Customers.CustomersService(_logger).GetCurrentCustomer()).Id,
                 // TODO ParkSlotId = ,
                 FromTime = fromTime,
                 ToTime = toTime,
@@ -23,6 +31,8 @@ namespace MrParker.Logic.Bookings
             };
 
             // TODO implement repo action
+            var repo = new DataAccess.Repositories.BookingRepository();
+            //await repo.SelectAsync()
 
             return true;
         }
