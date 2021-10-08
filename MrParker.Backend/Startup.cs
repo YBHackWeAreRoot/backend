@@ -17,12 +17,18 @@ namespace MrParker
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment environment;
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            this.environment = environment;
+
+            // SQL Connection-String
+            DataAccess.SqlConnectionProvider.Init(configuration.GetConnectionString("Main"));
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
