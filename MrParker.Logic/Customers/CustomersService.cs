@@ -37,11 +37,10 @@ namespace MrParker.Logic.Customers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex.Message);
             }
 
-            // TODO get from Repository
-            return Task.FromResult(mockedCustomer);
+            return null;
         }
     }
 }
