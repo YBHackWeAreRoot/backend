@@ -19,6 +19,15 @@ namespace MrParker.Logic.ParkingSpaces
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        public async Task<IEnumerable<ParkingSpaceSearchResult>> SearchAvailability(decimal positionLat, decimal positionLong, DateTime fromTime, DateTime toTime)
+        {
+            ParkingSpaceAvailabilityRepository repo = new();
+
+            // TODO
+
+            return null;
+        }
+
         public async Task<IEnumerable<ParkingSpaceAvailability>> GetAvailabilitiesAsync(IEnumerable<Guid> parkSpaceIds, DateTime fromTime, DateTime toTime)
         {
             ParkingSpaceAvailabilityRepository repo = new();

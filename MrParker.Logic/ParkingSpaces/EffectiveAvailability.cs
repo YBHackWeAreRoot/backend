@@ -8,6 +8,7 @@ namespace MrParker.Logic.ParkingSpaces
 {
     public class EffectiveAvailability
     {
-
+        public DateTime FromTime { get; set; }
+        public DateTime ToTime { get; set; }
     }
 }

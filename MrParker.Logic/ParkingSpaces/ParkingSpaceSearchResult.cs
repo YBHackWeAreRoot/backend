@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MrParker.DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,8 @@ namespace MrParker.Logic.ParkingSpaces
 {
     public class ParkingSpaceSearchResult
     {
-        public int ParkingSpace { get; set; }
-        public int ParkingSlot { get; set; }
-
+        public ParkingSpace ParkingSpace { get; set; }
+        public Provider Provider { get; set; }
+        public EffectiveAvailability Availability { get; set; }
     }
 }
