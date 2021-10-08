@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MrParker.DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +18,20 @@ namespace MrParker.Logic.Customers
         };
 
         // TODO REFACTOR: Get Customer based on authentication
-        public Task<DataAccess.Models.Customer> GetCurrentCustomer()
+        public Task<Customer> GetCurrentCustomer()
         {
+            var repo = new DataAccess.Repositories.CustomerRepository();
+
+            try
+            {
+                return Task.FromResult(repo.SelectAsync($"FirstName = @FirsName AND LastName = @LastName",
+                                       new { FirstName = "Peter", LastName = "Parker" }).Result.FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             // TODO get from Repository
             return Task.FromResult(mockedCustomer);
         }
