@@ -9,7 +9,7 @@ namespace MrParker.DataAccess.Models
     public class Booking
     {
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public int ParkSlotId { get; set; }
 

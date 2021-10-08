@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Models
 {
-    class ParkSlot
+    public class ParkSlot
     {
 
-        public long Id { get; set; }
+        public Guid Id { get; set; }
 
         public int ParkSpaceId { get; set; }
 
