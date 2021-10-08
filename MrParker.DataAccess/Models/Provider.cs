@@ -11,5 +11,13 @@ namespace MrParker.DataAccess.Models
 
         public int Id { get; set; }
 
+        public string Name { get; set; }
+
+        public byte ProviderType { get; set; }
+
+        public string ContactEmail { get; set; }
+
+        public string ContactPhone { get; set; }
+
     }
 }
