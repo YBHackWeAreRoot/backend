@@ -34,5 +34,22 @@ namespace MrParker.Logic.ParkingSpaces
             return null;
         }
 
+
+        public async Task<IEnumerable<ParkingSlot>> GetAvailableSlotsAsync(Guid parkSpaceId, DateTime fromTime, DateTime toTime)
+        {
+            ParkingSlotRepository repo = new();
+
+            try
+            {
+                return await repo.SelectAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+            return null;
+        }
+
+
     }
 }
