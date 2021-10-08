@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace MrParker.ApiModels
 {
-    public class ParkSpaceSearchResult
+    public class ParkingSpaceDetail
     {
         public string Id { get; set; }
-        public string ProviderName { get; set; }
+        public ProviderDetail Provider { get; set; }
         public decimal PositionLat { get; set; }
         public decimal PositionLong { get; set; }
         public string Address { get; set; }
