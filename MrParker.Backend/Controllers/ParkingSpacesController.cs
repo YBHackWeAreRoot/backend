@@ -28,6 +28,7 @@ namespace MrParker.Controllers
                 new ParkingSpaceSearchResult
                 {
                     Id = "1",
+                    Name = "EWB Hauptsitz",
                     ProviderName = "EWB",
                     Address = "Monbijoustrasse 11, \n3011 Bern",
                     Currency = "CHF",
@@ -41,6 +42,7 @@ namespace MrParker.Controllers
                 new ParkingSpaceSearchResult
                 {
                     Id = "2",
+                    Name = "Parkplatz",
                     ProviderName = "Muster Hans",
                     Address = "Klösterlistutz 20, \n3013 Bern",
                     Currency = "CHF",
@@ -65,6 +67,7 @@ namespace MrParker.Controllers
             return new ParkingSpaceDetail
             {
                 Id = id,
+                Name = "Some parking slot",
                 Provider = new ProviderDetail
                 {
                     Id = "11",

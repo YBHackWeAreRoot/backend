@@ -8,6 +8,7 @@ namespace MrParker.ApiModels
     public class ParkingSpaceSearchResult
     {
         public string Id { get; set; }
+        public string Name { get; set; }
         public string ProviderName { get; set; }
         public decimal PositionLat { get; set; }
         public decimal PositionLong { get; set; }
