@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MrParker.ApiModels;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ namespace MrParker.Controllers
     [ApiController]
     public class ParkingSpacesController : ControllerBase
     {
+        private readonly ILogger<ParkingSpacesController> _logger;
+
+        public ParkingSpacesController(ILogger<ParkingSpacesController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET: api/<ParkingSpacesController>
         [HttpGet]
         [Route("api/[controller]/search")]
