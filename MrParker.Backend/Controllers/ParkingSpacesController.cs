@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MrParker.ApiModels;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ namespace MrParker.Controllers
     [ApiController]
     public class ParkingSpacesController : ControllerBase
     {
+        private readonly ILogger<ParkingSpacesController> _logger;
+
+        public ParkingSpacesController(ILogger<ParkingSpacesController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET: api/<ParkingSpacesController>
         [HttpGet]
         [Route("api/[controller]/search")]
@@ -82,7 +90,7 @@ namespace MrParker.Controllers
                 ToTime = to.AddHours(6),
                 PositionLat = 46.944840M,
                 PositionLong = 7.436910M,
-                RatePerMinute = .1M,
+                RatePerMinute = .01M,
                 Capacity = 45,
                 Description = "Description ...",
             };
