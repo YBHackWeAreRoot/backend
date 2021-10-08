@@ -9,7 +9,7 @@ namespace MrParker.DataAccess.Models
     public class ParkSpace
     {
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public decimal Longitude { get; set; }
 

@@ -10,7 +10,7 @@ namespace MrParker.DataAccess.Models
     public class ParkSpaceAvailability
     {
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public int ParkSpaceId { get; set; }
 
