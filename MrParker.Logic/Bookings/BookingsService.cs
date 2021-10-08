@@ -28,7 +28,11 @@ namespace MrParker.Logic.Bookings
             // TODO Verification of validity of from/to for specified Parking-Space
 
             // TODO Find available Slot by from/to
-            var availableSlots = new ParkingSpaces.ParkingSpacesService(_logger);
+            var availableSlots = await new ParkingSpaces.ParkingSpacesService(_logger)
+                .GetAvailableSlotsAsync(Guid.Parse(parkingSpaceId), fromTime, toTime);
+
+            if (!availableSlots.Any())
+                return false;
 
             // Insert new Booking
             try
@@ -36,7 +40,7 @@ namespace MrParker.Logic.Bookings
                 await repository.InsertAsync(new DataAccess.Models.Booking
                 {
                     CustomerId = (await new Customers.CustomersService(_logger).GetCurrentCustomer()).Id,
-                    //ParkSlotId = ,
+                    ParkingSlotId = availableSlots.First().Id,
                     FromTime = fromTime,
                     ToTime = toTime,
                     Status = (int)BookingStatus.Reserved,
