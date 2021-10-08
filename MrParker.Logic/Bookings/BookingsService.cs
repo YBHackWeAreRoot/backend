@@ -10,78 +10,118 @@ namespace MrParker.Logic.Bookings
     public class BookingsService
     {
         private ILogger _logger;
+        private DataAccess.Repositories.BookingRepository repository;
 
         public BookingsService(ILogger logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            repository = new DataAccess.Repositories.BookingRepository();
         }
+
+        //public async Task<IEnumerable<DataAccess.Models.Booking>> GetList(Guid customerId)
+        //{
+
+        //}
 
         public async Task<bool> Create(string parkingSpaceId, DateTime fromTime, DateTime toTime)
         {
             // TODO Verification of validity of from/to for specified Parking-Space
 
-            // TODO implement
-            var booking = new DataAccess.Models.Booking
+            // Insert new Booking
+            try
             {
-                CustomerId = (await new Customers.CustomersService(_logger).GetCurrentCustomer()).Id,
-                // TODO ParkSlotId = ,
-                FromTime = fromTime,
-                ToTime = toTime,
-                Status = (int)BookingStatus.Reserved,
-            };
-
-            // TODO implement repo action
-            var repo = new DataAccess.Repositories.BookingRepository();
-            //await repo.SelectAsync()
+                await repository.InsertAsync(new DataAccess.Models.Booking
+                {
+                    CustomerId = (await new Customers.CustomersService(_logger).GetCurrentCustomer()).Id,
+                    // TODO ParkSlotId = ,
+                    FromTime = fromTime,
+                    ToTime = toTime,
+                    Status = (int)BookingStatus.Reserved,
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Insert Booking");
+                return false;
+            }
 
             return true;
         }
 
-        public Task<bool> Cancel(string id)
+        public async Task<bool> Cancel(string id)
         {
             _ = id ?? throw new ArgumentNullException(nameof(id));
 
-            var booking = new DataAccess.Models.Booking
+            try
             {
-                Id = Guid.Parse(id),
-                Status = (int)BookingStatus.Canceled
-            };
+                await repository.UpdateAsync(
+                    new DataAccess.Models.Booking
+                    {
+                        Id = Guid.Parse(id),
+                    },
+                    new { 
+                        Status = (int)BookingStatus.Canceled
+                    });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Set Booking cancelled");
+                return false;
+            }
 
-            // TODO implement repo action
-
-            return Task.FromResult(true);
+            return true;
         }
 
-        public Task<bool> CheckIn(string id)
+        public async Task<bool> CheckIn(string id)
         {
             _ = id ?? throw new ArgumentNullException(nameof(id));
 
-            var booking = new DataAccess.Models.Booking
+            try
             {
-                Id = Guid.Parse(id),
-                Status = (int)BookingStatus.CheckedIn,
-                CheckedInTime = DateTime.Now,
-            };
+                await repository.UpdateAsync(
+                    new DataAccess.Models.Booking
+                    {
+                        Id = Guid.Parse(id),
+                    },
+                    new
+                    {
+                        CheckedInTime = DateTime.Now,
+                        Status = (int)BookingStatus.CheckedIn
+                    });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Check-In Booking");
+                return false;
+            }
 
-            // TODO implement repo action
-
-            return Task.FromResult(true);
+            return true;
         }
 
-        public Task<bool> CheckOut(string id)
+        public async Task<bool> CheckOut(string id)
         {
             _ = id ?? throw new ArgumentNullException(nameof(id));
 
-            var booking = new DataAccess.Models.Booking
+            try
             {
-                Id = Guid.Parse(id),
-                Status = (int)BookingStatus.CheckedOut,
-                CheckedOutTime = DateTime.Now,
-            };
+                await repository.UpdateAsync(
+                    new DataAccess.Models.Booking
+                    {
+                        Id = Guid.Parse(id),
+                    },
+                    new
+                    {
+                        CheckedOutTime = DateTime.Now,
+                        Status = (int)BookingStatus.CheckedOut
+                    });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Check-Out Booking");
+                return false;
+            }
 
-            // TODO implement repo action
-
-            return Task.FromResult(true);
+            return true;
         }
     }
 }
