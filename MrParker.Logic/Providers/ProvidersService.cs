@@ -12,10 +12,12 @@ namespace MrParker.Logic.Providers
     public class ProvidersService
     {
         private ILogger _logger;
+        private DataAccess.Repositories.ProviderRepository repository;
 
         public ProvidersService(ILogger logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            repository = new DataAccess.Repositories.ProviderRepository();
         }
 
         public async Task<IEnumerable<Provider>> GetProviders(IEnumerable<Guid> providerIds)

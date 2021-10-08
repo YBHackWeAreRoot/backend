@@ -35,11 +35,11 @@ namespace MrParker.Controllers
             return new[] { 
                 new ParkingSpaceDetail
                 {
-                    Id = "39577d63-1336-47bb-94ec-f5885caf0085",
+                    Id = "ca7b4ff3-2bcb-499a-86aa-67a0760594f8",
                     Name = "EWB Hauptsitz",
                     Provider = new ProviderDetail
                     {
-                        Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
+                        Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
                         Name = "EWB",
                         ProviderType = "Company",
                         ContactEmail = "info@ewb.ch",
@@ -56,14 +56,14 @@ namespace MrParker.Controllers
                 },
                 new ParkingSpaceDetail
                 {
-                    Id = "fa9ad634-0561-46b7-aaa7-7f56719c83b1",
+                    Id = "3809a2eb-c8fc-4ba1-b920-8295c2385233",
                     Name = "Parkplatz",
                     Provider = new ProviderDetail
                     {
-                        Id = "bd978559-54e5-471b-8ded-9c3dcff62d2c",
+                        Id = "0123636b-0c0e-4d57-a505-0f9e13a71178", // TODO from DB
                         Name = "Moriz Müller",
                         ProviderType = "Private",
-                        ContactEmail = "moriz@mueller",
+                        ContactEmail = "moriz@mueller.ch",
                         ContactPhone = "+41794561283",
                     },
                     Address = "Klösterlistutz 20, \n3013 Bern",
@@ -77,11 +77,11 @@ namespace MrParker.Controllers
                 },
                 new ParkingSpaceDetail
                 {
-                    Id = "bb1346a4-feeb-4468-af75-43bb00355e97",
+                    Id = "0771fbeb-2f88-4789-a91a-680ba47d6898",
                     Name = "Bern EXPO",
-                    Provider = new ProviderDetail
+                    Provider = new ProviderDetail // TODO from DB
                     {
-                        Id = "77675b93-cce3-4579-9dbb-3d67aae4c6ce",
+                        Id = "ba2b30e8-2201-44a7-9745-07f7b1202da6",
                         Name = "Contoso",
                         ProviderType = "Company",
                         ContactPhone = "+41794561243"
@@ -97,11 +97,11 @@ namespace MrParker.Controllers
                 },
                 new ParkingSpaceDetail
                 {
-                    Id = "026064bf-e897-4e2e-9c69-0e8f5f07e4cf",
+                    Id = "b47ab107-2762-4d3f-a392-4313c8966c57",
                     Name = "Bern EXPO - RESERVE",
                     Provider = new ProviderDetail
                     {
-                        Id = "77675b93-cce3-4579-9dbb-3d67aae4c6ce",
+                        Id = "ba2b30e8-2201-44a7-9745-07f7b1202da6",
                         Name = "Contoso",
                         ProviderType = "Company",
                         ContactPhone = "+41794561243"
@@ -110,18 +110,18 @@ namespace MrParker.Controllers
                     Currency = "CHF",
                     FromTime = from.AddMinutes(30),
                     ToTime = to.AddHours(5),
-                    PositionLat = 46.9604707M,
-                    PositionLong = 7.4666359M,
+                    PositionLat = 46.9599967M,
+                    PositionLong = 7.4660901M,
                     RatePerMinute = .2M,
                     Capacity = 12,
                 },
                 new ParkingSpaceDetail
                 {
-                    Id = "d1738d92-47ee-49e4-8e53-da2d261ded13",
+                    Id = "26c32cac-b73a-422c-baae-b8f95b2af0c0",
                     Name = "Bern EXPO - RESTRICTED",
                     Provider = new ProviderDetail
                     {
-                        Id = "77675b93-cce3-4579-9dbb-3d67aae4c6ce",
+                        Id = "ba2b30e8-2201-44a7-9745-07f7b1202da6",
                         Name = "Contoso",
                         ProviderType = "Company",
                         ContactPhone = "+41794561243"
@@ -130,8 +130,8 @@ namespace MrParker.Controllers
                     Currency = "CHF",
                     FromTime = from,
                     ToTime = to.AddHours(5),
-                    PositionLat = 46.9604707M,
-                    PositionLong = 7.4666359M,
+                    PositionLat = 46.9606667M,
+                    PositionLong = 7.4666480M,
                     RatePerMinute = .2M,
                     Capacity = 12,
                 }
@@ -152,7 +152,7 @@ namespace MrParker.Controllers
                 Name = "Some parking slot",
                 Provider = new ProviderDetail
                 {
-                    Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
+                    Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
                     Name = "EWB",
                     ProviderType = "Company",
                     ContactEmail = "info@ewb.ch",

@@ -23,9 +23,9 @@ namespace MrParker.Controllers
                 {
                     Id = "39577d63-1336-47bb-94ec-f5885caf0085",
                     Name = "Monbijou",
-                    Provider = new ProviderDetail
+                    Provider = new ProviderDetail // TODO from DB
                     {
-                        Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
+                        Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
                         Name = "EWB",
                         ProviderType = "Company",
                         ContactEmail = "info@ewb.ch",
@@ -58,7 +58,7 @@ namespace MrParker.Controllers
                     Name = "Headquarters",
                     Provider = new ProviderDetail
                     {
-                        Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
+                        Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
                         Name = "EWB",
                         ProviderType = "Company",
                         ContactEmail = "info@ewb.ch",
@@ -91,7 +91,7 @@ namespace MrParker.Controllers
                     Name = "Tiefgarage A",
                     Provider = new ProviderDetail
                     {
-                        Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
+                        Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
                         Name = "EWB",
                         ProviderType = "Company",
                         ContactEmail = "info@ewb.ch",
@@ -124,7 +124,7 @@ namespace MrParker.Controllers
                     Name = "Some parking slot",
                     Provider = new ProviderDetail
                     {
-                        Id = "3a59ac04-a2b4-498d-a637-974e938afbd2",
+                        Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
                         Name = "EWB",
                         ProviderType = "Company",
                         ContactEmail = "info@ewb.ch",
