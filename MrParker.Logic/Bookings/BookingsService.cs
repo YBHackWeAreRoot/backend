@@ -58,10 +58,9 @@ namespace MrParker.Logic.Bookings
                     new DataAccess.Models.Booking
                     {
                         Id = Guid.Parse(id),
-                    },
-                    new { 
                         Status = (int)BookingStatus.Canceled
-                    });
+                    },
+                    new[] { "Status" });
             }
             catch (Exception ex)
             {
@@ -82,12 +81,10 @@ namespace MrParker.Logic.Bookings
                     new DataAccess.Models.Booking
                     {
                         Id = Guid.Parse(id),
-                    },
-                    new
-                    {
                         CheckedInTime = DateTime.Now,
                         Status = (int)BookingStatus.CheckedIn
-                    });
+                    },
+                    new[] { "CheckedInTime", "Status" });
             }
             catch (Exception ex)
             {
@@ -108,12 +105,10 @@ namespace MrParker.Logic.Bookings
                     new DataAccess.Models.Booking
                     {
                         Id = Guid.Parse(id),
-                    },
-                    new
-                    {
                         CheckedOutTime = DateTime.Now,
                         Status = (int)BookingStatus.CheckedOut
-                    });
+                    },
+                    new[] { "CheckedOutTime", "Status" });
             }
             catch (Exception ex)
             {
