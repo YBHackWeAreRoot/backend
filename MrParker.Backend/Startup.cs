@@ -97,8 +97,8 @@ namespace MrParker
             //})).Result;
 
             //var parkSpace = Task.Run(async () => await parkSpaceRepo.SelectAsync("ProviderId = @ProviderId", new { ProviderId = provider.Id })).Result.FirstOrDefault();
-
-            //var updateResult = Task.Run(async () => await parkSpaceRepo.UpdateAsync(parkSpace, new { Id = parkSpace.Id, Currency = "CHF" })).Result;
+            //parkSpace.Currency = "CHF";
+            //var updateResult = Task.Run(async () => await parkSpaceRepo.UpdateAsync(parkSpace, new[] { "Currency" })).Result;
 
             //var customerRepo = new DataAccess.Repositories.CustomerRepository();
             //bool insertPaker = Task.Run(async () => await customerRepo.InsertAsync(new DataAccess.Models.Customer() {
