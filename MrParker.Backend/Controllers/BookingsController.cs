@@ -132,29 +132,45 @@ namespace MrParker.Controllers
             return mockedBookings;
         }
 
-        //// GET api/<BookingsController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //// POST api/<BookingsController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<BookingsController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<BookingsController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [HttpPost]
+        [Route("api/[controller]/new")]
+        public async Task CreateNew([FromBody] BookingRequest request)
+        {
+            if (!await new Logic.Bookings.Booking()
+                .Create(request.ParkingSpaceId, request.From, request.To))
+            {
+                Response.StatusCode = 400; // Invalid request
+            }
+        }
+        
+        [HttpPost]
+        [Route("api/[controller]/cancel")]
+        public async Task Cancel([FromBody] string bookingId)
+        {
+            if (!await new Logic.Bookings.Booking(bookingId).Cancel())
+            {
+                Response.StatusCode = 400; // Invalid request
+            }
+        }
+        
+        [HttpPost]
+        [Route("api/[controller]/checkin")]
+        public async Task CheckIn([FromBody] string bookingId)
+        {
+            if (!await new Logic.Bookings.Booking(bookingId).CheckIn())
+            {
+                Response.StatusCode = 400; // Invalid request
+            }
+        }
+        
+        [HttpPost]
+        [Route("api/[controller]/checkout")]
+        public async Task CheckOut([FromBody] string bookingId)
+        {
+            if (!await new Logic.Bookings.Booking(bookingId).CheckOut())
+            {
+                Response.StatusCode = 400; // Invalid request
+            }
+        }
     }
 }
