@@ -162,9 +162,23 @@ namespace MrParker.Controllers
         // GET: api/<BookingsController>
         [HttpGet]
         [Route("api/[controller]/list")]
-        public IEnumerable<Booking> Get()
+        public async Task<IEnumerable<Booking>> GetList()
         {
-            return mockedBookings;
+            Logic.Customers.CustomersService cs = new Logic.Customers.CustomersService(_logger);
+            DataAccess.Models.Customer customer = await cs.GetCurrentCustomer();
+            Logic.ParkingSpaces.ParkingSpacesService pss = new Logic.ParkingSpaces.ParkingSpacesService(_logger);
+            
+
+
+            var bookings = await service.GetList(customer.Id);
+            return bookings.Select(b => new Booking()
+            {
+                Id = b.Id.ToString(),
+                CheckedInTime = b.CheckedInTime,
+                CheckedOutTime = b.CheckedOutTime,
+                Status = b.Status.ToString(),
+                
+            });
         }
 
         [HttpPost]
