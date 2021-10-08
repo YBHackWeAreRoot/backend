@@ -74,6 +74,66 @@ namespace MrParker.Controllers
                     PositionLong = 7.459832M,
                     RatePerMinute = .015M,
                     Capacity = 1
+                },
+                new ParkingSpaceDetail
+                {
+                    Id = "bb1346a4-feeb-4468-af75-43bb00355e97",
+                    Name = "Bern EXPO",
+                    Provider = new ProviderDetail
+                    {
+                        Id = "77675b93-cce3-4579-9dbb-3d67aae4c6ce",
+                        Name = "Contoso",
+                        ProviderType = "Company",
+                        ContactPhone = "+41794561243"
+                    },
+                    Address = "Mingerstrasse 6, \n3014 Bern",
+                    Currency = "CHF",
+                    FromTime = from.AddMinutes(-30),
+                    ToTime = to.AddHours(5),
+                    PositionLat = 46.9604707M,
+                    PositionLong = 7.4666359M,
+                    RatePerMinute = .2M,
+                    Capacity = 12,
+                },
+                new ParkingSpaceDetail
+                {
+                    Id = "026064bf-e897-4e2e-9c69-0e8f5f07e4cf",
+                    Name = "Bern EXPO - RESERVE",
+                    Provider = new ProviderDetail
+                    {
+                        Id = "77675b93-cce3-4579-9dbb-3d67aae4c6ce",
+                        Name = "Contoso",
+                        ProviderType = "Company",
+                        ContactPhone = "+41794561243"
+                    },
+                    Address = "Mingerstrasse 6, \n3014 Bern",
+                    Currency = "CHF",
+                    FromTime = from.AddMinutes(30),
+                    ToTime = to.AddHours(5),
+                    PositionLat = 46.9604707M,
+                    PositionLong = 7.4666359M,
+                    RatePerMinute = .2M,
+                    Capacity = 12,
+                },
+                new ParkingSpaceDetail
+                {
+                    Id = "d1738d92-47ee-49e4-8e53-da2d261ded13",
+                    Name = "Bern EXPO - RESTRICTED",
+                    Provider = new ProviderDetail
+                    {
+                        Id = "77675b93-cce3-4579-9dbb-3d67aae4c6ce",
+                        Name = "Contoso",
+                        ProviderType = "Company",
+                        ContactPhone = "+41794561243"
+                    },
+                    Address = "Mingerstrasse 6, \n3014 Bern",
+                    Currency = "CHF",
+                    FromTime = from,
+                    ToTime = to.AddHours(5),
+                    PositionLat = 46.9604707M,
+                    PositionLong = 7.4666359M,
+                    RatePerMinute = .2M,
+                    Capacity = 12,
                 }
             };
         }
