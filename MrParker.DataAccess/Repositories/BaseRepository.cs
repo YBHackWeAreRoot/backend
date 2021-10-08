@@ -32,7 +32,7 @@ namespace MrParker.DataAccess.Repositories
             using var db = SqlConnectionProvider.CreateConnection();
             db.Open();
 
-            // Id-Spalte und die zu updatenden Spalten zu Dictionary hinzufügen.
+            // Add Id-column and all columns that should be to updated to the Dictionary.
             Dictionary<string, object> dict = new();
             foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(record))
             {
