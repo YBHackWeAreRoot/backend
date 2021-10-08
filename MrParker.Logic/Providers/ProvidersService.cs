@@ -12,27 +12,25 @@ namespace MrParker.Logic.Providers
     public class ProvidersService
     {
         private ILogger _logger;
-        private DataAccess.Repositories.ProviderRepository repository;
+        private ProviderRepository repository;
 
         public ProvidersService(ILogger logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            repository = new DataAccess.Repositories.ProviderRepository();
+            repository = new ProviderRepository();
         }
 
         public async Task<IEnumerable<Provider>> GetProviders(IEnumerable<Guid> providerIds)
         {
-            ProviderRepository repo = new();
-
             try
             {
-                return await repo.SelectAsync($"ProviderId IN @ProviderId", new { ProviderId = providerIds.ToArray() });
+                return await repository.SelectAsync($"Id IN @ProviderId", new { ProviderId = providerIds.ToArray() });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
             }
-            return null;
+            return Enumerable.Empty<Provider>();
         }
 
     }

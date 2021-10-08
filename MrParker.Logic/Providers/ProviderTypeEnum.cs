@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MrParker.Logic.Providers
 {
-    public enum ProviderType
+    public enum ProviderType : byte
     {
         Company = 0,
         Private = 1,
