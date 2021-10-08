@@ -36,7 +36,7 @@ namespace MrParker.Controllers
                     ToTime = to.AddHours(6),
                     PositionLat = 46.944840M,
                     PositionLong = 7.436910M,
-                    RatePerMinute = .1M,
+                    RatePerMinute = .01M,
                     Capacity = 45
                 },
                 new ParkingSpaceSearchResult
@@ -50,7 +50,7 @@ namespace MrParker.Controllers
                     ToTime = to.AddDays(1),
                     PositionLat = 46.948580M,
                     PositionLong = 7.459832M,
-                    RatePerMinute = .15M,
+                    RatePerMinute = .015M,
                     Capacity = 1
                 }
             };
