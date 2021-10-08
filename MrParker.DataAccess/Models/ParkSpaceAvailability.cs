@@ -12,6 +12,16 @@ namespace MrParker.DataAccess.Models
 
         public int Id { get; set; }
 
+        public int ParkSpaceId { get; set; }
+
+        public byte? WeekDay { get; set; }
+
+        public DateTime? Date { get; set; }
+
+        public DateTime? FromTime { get; set; }
+
+        public DateTime? ToTime { get; set; }
+
     }
 
 }

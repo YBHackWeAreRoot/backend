@@ -11,7 +11,9 @@ namespace MrParker.DataAccess.Models
 
         public long Id { get; set; }
 
+        public int ParkSpaceId { get; set; }
 
+        public int AvailabilityId { get; set; }
 
     }
 }
