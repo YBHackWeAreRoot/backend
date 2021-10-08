@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using MrParker.DataAccess.Models;
+using MrParker.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +12,26 @@ namespace MrParker.Logic.Bookings
     public class BookingsService
     {
         private ILogger _logger;
-        private DataAccess.Repositories.BookingRepository repository;
+        private BookingRepository repository;
 
         public BookingsService(ILogger logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            repository = new DataAccess.Repositories.BookingRepository();
+            repository = new BookingRepository();
         }
 
-        //public async Task<IEnumerable<DataAccess.Models.Booking>> GetList(Guid customerId)
-        //{
-
-        //}
+        public async Task<IEnumerable<Booking>> GetList(Guid customerId)
+        {
+            try
+            {
+                return await repository.SelectAsync("CustomerId = @CustomerId", new { CustomerId = customerId });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Get Booking List");
+            }
+            return null;
+        }
 
         public async Task<bool> Create(string parkingSpaceId, DateTime fromTime, DateTime toTime)
         {
@@ -37,7 +47,7 @@ namespace MrParker.Logic.Bookings
             // Insert new Booking
             try
             {
-                await repository.InsertAsync(new DataAccess.Models.Booking
+                await repository.InsertAsync(new Booking
                 {
                     CustomerId = (await new Customers.CustomersService(_logger).GetCurrentCustomer()).Id,
                     ParkingSlotId = availableSlots.First().Id,
@@ -62,7 +72,7 @@ namespace MrParker.Logic.Bookings
             try
             {
                 await repository.UpdateAsync(
-                    new DataAccess.Models.Booking
+                    new Booking
                     {
                         Id = Guid.Parse(id),
                         Status = (int)BookingStatus.Canceled
@@ -108,7 +118,7 @@ namespace MrParker.Logic.Bookings
             try
             {
                 await repository.UpdateAsync(
-                    new DataAccess.Models.Booking
+                    new Booking
                     {
                         Id = Guid.Parse(id),
                         CheckedInTime = DateTime.Now,
@@ -132,7 +142,7 @@ namespace MrParker.Logic.Bookings
             try
             {
                 await repository.UpdateAsync(
-                    new DataAccess.Models.Booking
+                    new Booking
                     {
                         Id = Guid.Parse(id),
                         CheckedOutTime = DateTime.Now,

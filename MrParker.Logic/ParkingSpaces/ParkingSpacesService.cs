@@ -59,7 +59,7 @@ namespace MrParker.Logic.ParkingSpaces
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "Get ParkingSpaces");
             }
             return null;
         }
@@ -74,7 +74,7 @@ namespace MrParker.Logic.ParkingSpaces
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "Get Availabilities");
             }
             return null;
         }
@@ -90,7 +90,7 @@ namespace MrParker.Logic.ParkingSpaces
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "Get Available ParkingSlots");
             }
             return null;
         }
