@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Models
 {
-    public class ParkSpaceAvailability : IModel
+    public class ParkingSpaceAvailability : IModel
     {
 
         public Guid Id { get; set; }
 
-        public Guid ParkSpaceId { get; set; }
+        public Guid ParkingSpaceId { get; set; }
 
         public byte? WeekDay { get; set; }
 

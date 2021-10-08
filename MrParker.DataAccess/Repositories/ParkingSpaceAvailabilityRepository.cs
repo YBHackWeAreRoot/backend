@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Repositories
 {
-    public class ParkSlotRepository : BaseRepository<ParkSlot>
+    public class ParkingSpaceAvailabilityRepository : BaseRepository<ParkingSpaceAvailability>
     {
 
     }

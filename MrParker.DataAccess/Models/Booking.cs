@@ -12,7 +12,7 @@ namespace MrParker.DataAccess.Models
 
         public Guid Id { get; set; }
 
-        public Guid ParkSlotId { get; set; }
+        public Guid ParkingSlotId { get; set; }
 
         public DateTime FromTime {get; set;}
 

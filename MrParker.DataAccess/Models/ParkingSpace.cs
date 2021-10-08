@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Models
 {
-    public class ParkSpace : IModel
+    public class ParkingSpace : IModel
     {
 
         public Guid Id { get; set; }

@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Models
 {
-    public class ParkSlot : IModel
+    public class ParkingSlot : IModel
     {
 
         public Guid Id { get; set; }
 
-        public Guid ParkSpaceId { get; set; }
-
-        public int AvailabilityId { get; set; }
+        public Guid ParkingSpaceId { get; set; }
 
     }
 }

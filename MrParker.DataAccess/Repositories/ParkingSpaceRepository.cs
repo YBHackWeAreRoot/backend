@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace MrParker.DataAccess.Repositories
 {
-    public class ParkSpaceAvailabilityRepository : BaseRepository<ParkSpaceAvailability>
+    public class ParkingSpaceRepository : BaseRepository<ParkingSpace>
     {
-
+ 
     }
 }
