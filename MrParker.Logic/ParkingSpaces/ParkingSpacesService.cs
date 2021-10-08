@@ -46,6 +46,22 @@ namespace MrParker.Logic.ParkingSpaces
                 Provider = providers.TryGetValue(s.ProviderId, out Provider provider) ? provider : null
             });
         }
+        
+        public async Task<IEnumerable<ParkingSpace>> GetParkingSpacesAsync(decimal positionLat, decimal positionLong)
+        {
+            ParkingSpaceRepository repo = new();
+
+            try
+            {
+                // TODO: Query by coordinates
+                return await repo.SelectAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+            return null;
+        }
 
         public async Task<IEnumerable<ParkingSpaceAvailability>> GetAvailabilitiesAsync(IEnumerable<Guid> parkSpaceIds, DateTime fromTime, DateTime toTime)
         {
