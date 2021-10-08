@@ -27,21 +27,21 @@ namespace MrParker.DataAccess.Repositories
             return await db.InsertAsync<Guid, T>(record) != Guid.Empty;
         }
 
-        public async Task<bool> UpdateAsync(T record, object parameters)
+        public async Task<bool> UpdateAsync(T record, string[] columns = null)
         {
             using var db = SqlConnectionProvider.CreateConnection();
             db.Open();
 
-            Dictionary<string, object> dict = new Dictionary<string, object>();
-
-            foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(parameters))
+            // Id-Spalte und die zu updatenden Spalten zu Dictionary hinzufügen.
+            Dictionary<string, object> dict = new();
+            foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(record))
             {
-                if (!"Id".Equals(property.Name, StringComparison.InvariantCultureIgnoreCase))
+                if ("Id".Equals(property.Name, StringComparison.InvariantCultureIgnoreCase) ||
+                    columns.Any(c => c.Equals(property.Name, StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    dict.Add(property.Name, property.GetValue(parameters));
+                    dict.Add(property.Name, property.GetValue(record));
                 }
             }
-
             if (!dict.ContainsKey("Id")) { dict.Add("Id", record.Id ); }
 
             return await db.UpdateFieldsAsync<T>(dict) != null;

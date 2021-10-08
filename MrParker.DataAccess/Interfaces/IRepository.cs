@@ -13,7 +13,7 @@ namespace MrParker.DataAccess.Interfaces
 
         public Task<bool> InsertAsync(T record);
 
-        public Task<bool> UpdateAsync(T record, object parameters);
+        public Task<bool> UpdateAsync(T record, string[] columns = null);
 
         public Task<bool> DeleteAsync(T record);
 
