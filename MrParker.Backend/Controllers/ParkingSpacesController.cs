@@ -90,7 +90,7 @@ namespace MrParker.Controllers
                 ToTime = to.AddHours(6),
                 PositionLat = 46.944840M,
                 PositionLong = 7.436910M,
-                RatePerMinute = .1M,
+                RatePerMinute = .01M,
                 Capacity = 45,
                 Description = "Description ...",
             };

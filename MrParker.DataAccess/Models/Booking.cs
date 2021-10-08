@@ -19,5 +19,11 @@ namespace MrParker.DataAccess.Models
 
         public int CustomerId { get; set; }
 
+        public int Status { get; set; }
+
+        public DateTime? CheckedInTime { get; set; }
+
+        public DateTime? CheckedOutTime { get; set; }
+
     }
 }
