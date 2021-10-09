@@ -92,11 +92,11 @@ namespace MrParker.Controllers
         [Route("api/[controller]/demoreset")]
         public async Task<string> ResetDemoData()
         {
-            //if (!await service.CheckOut())
-            //{
-            //    Response.StatusCode = 400; // Invalid request
-            //    return "error";
-            //}
+            if (!await service.DeleteNewBookings(new DateTime(2021, 10, 9, 9, 0, 0).ToUniversalTime()))
+            {
+                Response.StatusCode = 400; // Invalid request
+                return "error";
+            }
 
             return "done";
         }
