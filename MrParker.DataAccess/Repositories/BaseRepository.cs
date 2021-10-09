@@ -54,5 +54,14 @@ namespace MrParker.DataAccess.Repositories
 
             return await db.DeleteAsync(record) == 1;
         }
+
+        public async Task<bool> DeleteByConditionAsync(string condition, object parameters)
+        {
+            using var db = SqlConnectionProvider.CreateConnection();
+            db.Open();
+            if (!condition.Trim().StartsWith("WHERE", StringComparison.InvariantCultureIgnoreCase)) { condition = $"WHERE {condition}"; }
+            await db.DeleteListAsync<T>(condition, parameters);
+            return true;
+        }
     }
 }
