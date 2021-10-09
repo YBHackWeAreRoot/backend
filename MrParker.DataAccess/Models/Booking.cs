@@ -30,5 +30,7 @@ namespace MrParker.DataAccess.Models
 
         public string Currency { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+
     }
 }
