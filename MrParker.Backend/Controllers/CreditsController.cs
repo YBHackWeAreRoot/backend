@@ -14,8 +14,7 @@ namespace MrParker.Controllers
         [Route("api/[controller]/raw")]
         public string GetCreditsString()
         {
-            return @"
-  __  __         _____              _                
+            return @"  __  __         _____              _                
  |  \/  |       |  __ \            | |               
  | \  / | _ __  | |__) |__ _  _ __ | | __ ___  _ __  
  | |\/| || '__| |  ___// _` || '__|| |/ // _ \| '__| 
@@ -32,7 +31,7 @@ namespace MrParker.Controllers
   > Matthias Schneeberger
   > Rolf Nyffenegger
  
-									 `$/              
+                                     `$/              
            __                        O$               
        _.-""  )                        $'              
     .-""`. .-"":        o      ___     ($o              
@@ -70,8 +69,7 @@ namespace MrParker.Controllers
 We all have secrets: the ones we keep... and the ones that are kept from us
 Peter Parker (Spider-Man - The Amazing Spider-Man)
 
->_
-";
+>_";
         }
 
         [HttpGet]
