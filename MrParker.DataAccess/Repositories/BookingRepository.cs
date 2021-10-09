@@ -18,7 +18,7 @@ namespace MrParker.DataAccess.Repositories
         {
             using var db = SqlConnectionProvider.CreateConnection();
             db.Open();
-
+            if (!condition.Trim().StartsWith("WHERE", StringComparison.InvariantCultureIgnoreCase)) { condition = $"WHERE {condition}"; }
             await db.DeleteListAsync<Booking>(condition, parameters);
             return true;
         }
