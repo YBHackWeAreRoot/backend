@@ -57,7 +57,8 @@ namespace MrParker.Helpers
                 Currency = b.Currency,
                 Price = b.Price,
                 ReservedFromTime = b.FromTime,
-                ReservedToTime = b.ToTime
+                ReservedToTime = b.ToTime,
+                CreatedDate = b.CreatedDate,
             };
         }
 
