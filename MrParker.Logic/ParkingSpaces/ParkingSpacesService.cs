@@ -95,6 +95,20 @@ namespace MrParker.Logic.ParkingSpaces
             return null;
         }
 
+        public async Task<ParkingSpace> GetParkingSpaceAsync(Guid parkingSpaceId)
+        {
+            ParkingSpaceRepository repo = new();
 
+            try
+            {
+                return (await repo.SelectAsync("Id = @ParkingSpaceId", new { ParkingSpaceId = parkingSpaceId }))
+                    .FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Get ParkingSpaces");
+            }
+            return null;
+        }
     }
 }
