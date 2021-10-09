@@ -20,7 +20,7 @@ namespace MrParker.Logic.Providers
             repository = new ProviderRepository();
         }
 
-        public async Task<IEnumerable<Provider>> GetProviders(IEnumerable<Guid> providerIds)
+        public async Task<IEnumerable<Provider>> GetProvidersAsync(IEnumerable<Guid> providerIds)
         {
             try
             {
