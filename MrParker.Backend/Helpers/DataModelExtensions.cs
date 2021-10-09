@@ -57,7 +57,8 @@ namespace MrParker.Helpers
                 Currency = psd.Currency, // TODO: befüllen mit richtigem Wert aus Booking (DataModel)
                 Price = psd.RatePerMinute, // TODO: befüllen mit richtigem Wert aus Booking (DataModel)
                 ReservedFromTime = b.FromTime,
-                ReservedToTime = b.ToTime
+                ReservedToTime = b.ToTime,
+                //CreatedDate = b.cre
             };
         }
 
