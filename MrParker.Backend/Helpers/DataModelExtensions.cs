@@ -17,7 +17,7 @@ namespace MrParker.Helpers
             {
                 Id = p.Id.ToString(),
                 Name = p.Name,
-                ProviderType = p.ProviderType.ToString(),
+                ProviderType = ((Logic.Providers.ProviderType)p.ProviderType).ToString(),
                 ContactEmail = p.ContactEmail,
                 ContactPhone = p.ContactPhone
             };
@@ -52,7 +52,7 @@ namespace MrParker.Helpers
                 Id = b.Id.ToString(),
                 CheckedInTime = b.CheckedInTime,
                 CheckedOutTime = b.CheckedOutTime,
-                Status = b.Status.ToString(),
+                Status = ((Logic.Bookings.BookingStatus)b.Status).ToString(),
                 ParkingSpace = psd,
                 Currency = psd.Currency, // TODO: befüllen mit richtigem Wert aus Booking (DataModel)
                 Price = psd.RatePerMinute, // TODO: befüllen mit richtigem Wert aus Booking (DataModel)
