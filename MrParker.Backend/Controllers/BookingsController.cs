@@ -87,5 +87,18 @@ namespace MrParker.Controllers
             if (!await service.CheckOut(id.BookingId))
                 Response.StatusCode = 400; // Invalid request
         }
+
+        [HttpGet]
+        [Route("api/[controller]/demoreset")]
+        public async Task<string> ResetDemoData()
+        {
+            //if (!await service.CheckOut())
+            //{
+            //    Response.StatusCode = 400; // Invalid request
+            //    return "error";
+            //}
+
+            return "done";
+        }
     }
 }
