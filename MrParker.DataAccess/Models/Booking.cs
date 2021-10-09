@@ -26,5 +26,9 @@ namespace MrParker.DataAccess.Models
 
         public DateTime? CheckedOutTime { get; set; }
 
+        public decimal Price { get; set; }
+
+        public string Currency { get; set; }
+
     }
 }

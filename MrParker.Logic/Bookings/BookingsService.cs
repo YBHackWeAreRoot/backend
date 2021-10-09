@@ -35,14 +35,18 @@ namespace MrParker.Logic.Bookings
 
         public async Task<bool> Create(string parkingSpaceId, DateTime fromTime, DateTime toTime)
         {
-            // TODO Verification of validity of from/to for specified Parking-Space
+            var parkingSpaceService = new ParkingSpaces.ParkingSpacesService(_logger);
 
-            // TODO Find available Slot by from/to
+            var parkingSpace = await parkingSpaceService.GetParkingSpaceAsync(Guid.Parse(parkingSpaceId));
+            if (parkingSpace == null) 
+                return false; // No matching Parking Space
+
+            // TODO Find and validate available Slot by from/to
             var availableSlots = await new ParkingSpaces.ParkingSpacesService(_logger)
                 .GetAvailableSlotsAsync(Guid.Parse(parkingSpaceId), fromTime, toTime);
 
             if (!availableSlots.Any())
-                return false;
+                return false; // No matching Slots
 
             // Insert new Booking
             try
@@ -54,6 +58,8 @@ namespace MrParker.Logic.Bookings
                     FromTime = fromTime,
                     ToTime = toTime,
                     Status = (int)BookingStatus.Reserved,
+                    Currency = parkingSpace.Currency,
+                    Price = Convert.ToDecimal((toTime - fromTime).TotalMinutes) * parkingSpace.RatePerMinute
                 });
             }
             catch (Exception ex)
