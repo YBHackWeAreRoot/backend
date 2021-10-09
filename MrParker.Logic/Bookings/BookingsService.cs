@@ -38,7 +38,7 @@ namespace MrParker.Logic.Bookings
             var parkingSpaceService = new ParkingSpaces.ParkingSpacesService(_logger);
 
             var parkingSpace = await parkingSpaceService.GetParkingSpaceAsync(Guid.Parse(parkingSpaceId));
-            if (parkingSpace == null) 
+            if (parkingSpace == null)
                 return false; // No matching Parking Space
 
             // TODO Find and validate available Slot by from/to
@@ -94,7 +94,7 @@ namespace MrParker.Logic.Bookings
 
             return true;
         }
-        
+
         public async Task<bool> CancelBySystem(string id)
         {
             _ = id ?? throw new ArgumentNullException(nameof(id));
@@ -164,6 +164,20 @@ namespace MrParker.Logic.Bookings
             }
 
             return true;
+        }
+
+        public async Task<bool> DeleteNewBookings(DateTime newerThan)
+        {
+            try
+            {
+                await repository.DeleteByConditionAsync("CreatedDate > @CreatedDate", new { CreatedDate = newerThan });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Delete Bookings by Condition");
+            }
+            return false;
         }
     }
 }
