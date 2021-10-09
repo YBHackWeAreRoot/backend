@@ -20,9 +20,9 @@ namespace MrParker.Controllers
  | |\/| || '__| |  ___// _` || '__|| |/ // _ \| '__| 
  | |  | || | _  | |   | (_| || |   |   <|  __/| |    
  |_|  |_||_|(_) |_|    \__,_||_|   |_|\_\\___||_|    
-                                                      
+                                                     
  Digital Parking Spaces Solution
- Developed by WeAreRoot @YB Hackathon 2021, Wankdorf Stadium Bern									 
+ Developed by WeAreRoot @YB Hackathon 2021, Wankdorf Stadium Bern
 
  WeAreRoot Team Members:
   > Anja Jentzsch
