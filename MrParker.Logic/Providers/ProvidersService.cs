@@ -33,5 +33,18 @@ namespace MrParker.Logic.Providers
             return Enumerable.Empty<Provider>();
         }
 
+        public async Task<Provider> GetProviderAsync(Guid providerId)
+        {
+            try
+            {
+                return (await repository.SelectAsync($"Id = @ProviderId", new { ProviderId = providerId }))
+                    .FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+            return null;
+        }
     }
 }

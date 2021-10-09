@@ -172,33 +172,59 @@ namespace MrParker.Controllers
         // GET api/<ParkingSpacesController>/5
         [HttpGet]
         [Route("api/[controller]/detail")]
-        public ParkingSpaceDetail Detail(string id, DateTime from, DateTime to)
+        public async Task<ParkingSpaceDetail> Detail(string id, DateTime from, DateTime to)
         {
             if (from == DateTime.MinValue || to == DateTime.MinValue)
                 return null;
 
+            var availability = await new Logic.ParkingSpaces.ParkingSpacesService(_logger)
+                .GetSingleAvailability(id, from, to);
+
             return new ParkingSpaceDetail
             {
-                Id = id,
-                Name = "Some parking slot",
+                Id = availability.ParkingSpace.Id.ToString(),
+                Name = availability.ParkingSpace.Name,
                 Provider = new ProviderDetail
                 {
-                    Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
-                    Name = "EWB",
-                    ProviderType = "Company",
-                    ContactEmail = "info@ewb.ch",
-                    ContactPhone = "+41 12 345 67 89"
+                    Id = availability.Provider.Id.ToString(),
+                    Name = availability.Provider.Name,
+                    ProviderType = ((Logic.Providers.ProviderType)availability.Provider.ProviderType).ToString(),
+                    ContactEmail = availability.Provider.ContactEmail,
+                    ContactPhone = availability.Provider.ContactPhone
                 },
-                Address = "Monbijoustrasse 11, \n3011 Bern",
-                Currency = "CHF",
-                FromTime = from.AddHours(-1),
-                ToTime = to.AddHours(6),
-                PositionLat = 46.944840M,
-                PositionLong = 7.436910M,
-                RatePerMinute = .01M,
-                Capacity = 45,
-                Description = "Description ...",
+                Address = $"{availability.ParkingSpace.Street}, \n{availability.ParkingSpace.Zip} {availability.ParkingSpace.City}", // TODO AddressLine2, Country
+                Currency = availability.ParkingSpace.Currency,
+                FromTime = availability.Availability.FromTime,
+                ToTime = availability.Availability.ToTime,
+                PositionLat = availability.ParkingSpace.Latitude,
+                PositionLong = availability.ParkingSpace.Longitude,
+                RatePerMinute = availability.ParkingSpace.RatePerMinute,
+                Capacity = availability.Availability.TotalParkingSlots,
+                Description = availability.ParkingSpace.Description
             };
+
+            //return new ParkingSpaceDetail
+            //{
+            //    Id = id,
+            //    Name = "Some parking slot",
+            //    Provider = new ProviderDetail
+            //    {
+            //        Id = "3705f1cd-02ac-47b7-95c3-15c3143add59",
+            //        Name = "EWB",
+            //        ProviderType = "Company",
+            //        ContactEmail = "info@ewb.ch",
+            //        ContactPhone = "+41 12 345 67 89"
+            //    },
+            //    Address = "Monbijoustrasse 11, \n3011 Bern",
+            //    Currency = "CHF",
+            //    FromTime = from.AddHours(-1),
+            //    ToTime = to.AddHours(6),
+            //    PositionLat = 46.944840M,
+            //    PositionLong = 7.436910M,
+            //    RatePerMinute = .01M,
+            //    Capacity = 45,
+            //    Description = "Description ...",
+            //};
         }
     }
 }

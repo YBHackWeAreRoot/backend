@@ -37,13 +37,11 @@ namespace MrParker.Logic.Bookings
         {
             var parkingSpaceService = new ParkingSpaces.ParkingSpacesService(_logger);
 
-            // TODO Verification of validity of from/to for specified Parking-Space
-
             var parkingSpace = await parkingSpaceService.GetParkingSpaceAsync(Guid.Parse(parkingSpaceId));
             if (parkingSpace == null) 
                 return false; // No matching Parking Space
 
-            // TODO Find available Slot by from/to
+            // TODO Find and validate available Slot by from/to
             var availableSlots = await new ParkingSpaces.ParkingSpacesService(_logger)
                 .GetAvailableSlotsAsync(Guid.Parse(parkingSpaceId), fromTime, toTime);
 

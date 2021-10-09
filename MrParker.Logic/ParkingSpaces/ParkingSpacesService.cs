@@ -40,14 +40,43 @@ namespace MrParker.Logic.ParkingSpaces
                 ParkingSpace = s,
                 Availability = new EffectiveAvailability
                 {
-                    FromTime = fromTime.AddHours(-1),
-                    ToTime = toTime.AddHours(6),
+                    FromTime = fromTime.AddHours(-1), // TODO set properly from availability
+                    ToTime = toTime.AddHours(6), // TODO set properly from availability
                     TotalParkingSlots = s.TotalParkingSlots, // TODO Sum of valid Slots
                 },
                 Provider = providers.TryGetValue(s.ProviderId, out Provider provider) ? provider : null,
             });
         }
-        
+
+        public async Task<ParkingSpaceSearchResult> GetSingleAvailability(string parkingSpaceId, DateTime fromTime, DateTime toTime)
+        {
+            // Load Parking-Space
+            var parkingSpace = await GetParkingSpaceAsync(Guid.Parse(parkingSpaceId));
+            if (parkingSpace == null)
+                return null; // No matching Parking-Space
+
+            // TODO Get Availabilities
+
+            // TODO Match from/to with Slots and Bookings
+
+            // Get Provider-Data
+            var provider = (await new Providers.ProvidersService(_logger)
+                .GetProviderAsync(parkingSpace.ProviderId));
+
+            // TODO REFACTOR (Presentation Workaround)
+            return  new ParkingSpaceSearchResult
+            {
+                ParkingSpace = parkingSpace,
+                Availability = new EffectiveAvailability
+                {
+                    FromTime = fromTime.AddHours(-1), // TODO set properly from availability
+                    ToTime = toTime.AddHours(6), // TODO set properly from availability
+                    TotalParkingSlots = parkingSpace.TotalParkingSlots, // TODO Sum of valid Slots
+                },
+                Provider = provider,
+            };
+        }
+
         public async Task<IEnumerable<ParkingSpace>> GetParkingSpacesAsync(decimal positionLat, decimal positionLong)
         {
             ParkingSpaceRepository repo = new();
