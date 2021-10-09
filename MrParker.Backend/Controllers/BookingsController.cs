@@ -88,11 +88,12 @@ namespace MrParker.Controllers
                 Response.StatusCode = 400; // Invalid request
         }
 
+        // TODO Remove (for presentation only)
         [HttpGet]
         [Route("api/[controller]/demoreset")]
         public async Task<string> ResetDemoData()
         {
-            if (!await service.DeleteNewBookings(new DateTime(2021, 10, 9, 9, 0, 0).ToUniversalTime()))
+            if (!await service.DeleteNewBookings(new DateTime(2021, 10, 9, 11, 0, 0).ToUniversalTime()))
             {
                 Response.StatusCode = 400; // Invalid request
                 return "error";
