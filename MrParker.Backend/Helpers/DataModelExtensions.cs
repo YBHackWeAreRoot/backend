@@ -54,8 +54,8 @@ namespace MrParker.Helpers
                 CheckedOutTime = b.CheckedOutTime,
                 Status = ((Logic.Bookings.BookingStatus)b.Status).ToString(),
                 ParkingSpace = psd,
-                Currency = psd.Currency, // TODO: befüllen mit richtigem Wert aus Booking (DataModel)
-                Price = psd.RatePerMinute, // TODO: befüllen mit richtigem Wert aus Booking (DataModel)
+                Currency = b.Currency,
+                Price = b.Price,
                 ReservedFromTime = b.FromTime,
                 ReservedToTime = b.ToTime
             };
