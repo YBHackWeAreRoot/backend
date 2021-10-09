@@ -70,7 +70,7 @@ namespace MrParker.Logic.ParkingSpaces
 
             try
             {
-                return await repo.SelectAsync("Id IN @ParkingSpaceIds", new { ParkingSpaceIds = new[] { parkingSlots.Select(p => p.ParkingSpaceId).ToArray() } });
+                return await repo.SelectAsync("Id IN @ParkingSpaceIds", new { ParkingSpaceIds = parkingSlots.Select(p => p.ParkingSpaceId).ToArray() });
             }
             catch (Exception ex)
             {
@@ -116,7 +116,7 @@ namespace MrParker.Logic.ParkingSpaces
 
             try
             {
-                return (await repo.SelectAsync("Id IN (SELECT Id FROM ParkingSlot WHERE CustomerId = @CustomerId)",
+                return (await repo.SelectAsync("Id IN (SELECT ParkingSlotId FROM Booking WHERE CustomerId = @CustomerId)",
                                                new { CustomerId = customerId }));
             }
             catch (Exception ex)

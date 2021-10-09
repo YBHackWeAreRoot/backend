@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MrParker.ApiModels;
+using MrParker.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -179,34 +180,13 @@ namespace MrParker.Controllers
                 List<Booking> results = new();
                 foreach (DataAccess.Models.Booking b in bookings)
                 {
+                    // Get Details per Booking
                     var slot = slots?.FirstOrDefault(s => s.Id == b.ParkingSlotId);
                     var parkingSpace = spaces?.FirstOrDefault(s => s.Id == slot?.ParkingSpaceId);
-                    ParkingSpaceDetail psd = new()
-                    {
-                        Id = parkingSpace.Id.ToString(),
-                        PositionLat = parkingSpace.Latitude,
-                        PositionLong = parkingSpace.Longitude,
-                        Provider = null, // TODO: Provider befüllen
-                        Address = $"{parkingSpace.Street}, {parkingSpace.AddrLine2}, {parkingSpace.Zip}, {parkingSpace.City}, {parkingSpace.Country}".Replace(", ,", ", "),
-                        Capacity = parkingSpace.TotalParkingSlots, // TODO: Stimmt das so?
-                        Description = parkingSpace.Description,
-                        Name = parkingSpace.Name,
-                        FromTime = DateTime.MinValue, // TODO: befüllen
-                        ToTime = DateTime.MaxValue, // TODO: befüllen
-                        RatePerMinute = parkingSpace.RatePerMinute,
-                        Currency = parkingSpace.Currency
-                    };
+                    var provider = providers.FirstOrDefault(p => p.Id == parkingSpace?.ProviderId);
 
-                    // TODO: restliche Daten befüllen
-
-                    results.Add(new Booking()
-                    {
-                        Id = b.Id.ToString(),
-                        CheckedInTime = b.CheckedInTime,
-                        CheckedOutTime = b.CheckedOutTime,
-                        Status = b.Status.ToString(),
-                        ParkingSpace = psd
-                    });
+                    ParkingSpaceDetail psd = parkingSpace.GetApiModel(provider, b);
+                    results.Add(b.GetApiModel(psd));
                 }
                 return results;
             }
