@@ -59,7 +59,8 @@ namespace MrParker.Logic.Bookings
                     ToTime = toTime,
                     Status = (int)BookingStatus.Reserved,
                     Currency = parkingSpace.Currency,
-                    Price = Convert.ToDecimal((toTime - fromTime).TotalMinutes) * parkingSpace.RatePerMinute
+                    Price = Convert.ToDecimal((toTime - fromTime).TotalMinutes) * parkingSpace.RatePerMinute,
+                    CreatedDate = DateTime.Now
                 });
             }
             catch (Exception ex)
